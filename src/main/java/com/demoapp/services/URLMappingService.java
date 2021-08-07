@@ -25,9 +25,9 @@ public class URLMappingService {
     public String registerURL(String url){
         LOGGER.info("Registering short url {}", url);
         Optional<URLMappingEntity> existingMapping = urlMappingRepository.findByLongUrl(url);
-        if(existingMapping.isPresent()){
+        if(existingMapping.isPresent()){//check if mapping already available and if yes then send the existing short url
             return existingMapping.get().getShortUrl();
-        }else{
+        }else{//Create new mapping as mapping not available
             String uniqueShortUrlPath = generateUniqueShortUrl();
             URLMappingEntity entity = new URLMappingEntity(uniqueShortUrlPath, url);
             urlMappingRepository.save(entity);
@@ -51,6 +51,7 @@ public class URLMappingService {
         String shortUrl;
         Optional<URLMappingEntity> existingEntity;
         do {
+            //Generate a UUID and take first 8 characters and check if it exists in DB, if yes then create new else use that.
             shortUrl = UUID.randomUUID().toString().substring(0,8);
             existingEntity = urlMappingRepository.findByShortUrl(shortUrl);
         }while (existingEntity.isPresent());

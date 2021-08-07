@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Table(name = "URL_MAPPING")
