@@ -5,10 +5,11 @@ import io.swagger.v3.oas.annotations.*;
 import io.swagger.v3.oas.annotations.info.*;
 
 @OpenAPIDefinition(
-    info = @Info(
-            title = "url-shortener",
-            version = "0.0"
-    )
+        info = @Info(
+                title = "URL Shortner",
+                version = "1.0",
+                description = "URL Shortner"
+        )
 )
 public class Application {
 
