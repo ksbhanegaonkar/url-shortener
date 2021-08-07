@@ -2,11 +2,10 @@ package com.demoapp.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "URL_MAPPING")
@@ -14,7 +13,25 @@ import javax.persistence.Table;
 @Setter
 public class URLMappingEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "generator")
+    @GenericGenerator(
+            name = "generator",
+            strategy = "org.hibernate.id.IdentityGenerator"
+    )
+    @Column(name = "ID")
     Long id;
 
+    @Column(name = "shortUrl")
+    private String shortUrl;
+
+    @Column(name = "LONG_URL")
+    private String longUrl;
+
+    public URLMappingEntity() {
+    }
+
+    public URLMappingEntity(String shortUrl, String longURL) {
+        this.shortUrl = shortUrl;
+        this.longUrl = longURL;
+    }
 }
