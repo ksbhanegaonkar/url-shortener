@@ -55,7 +55,14 @@ class UrlShortenerTest {
         Assertions.assertEquals(23, shortUrl.length());
 
         String originalUrl = client.decodeShortUrl(shortUrl);
-        //Here two short urls are different because long urls are different
         Assertions.assertEquals("https://longurl.com", originalUrl);
+    }
+
+    @Test
+    @DisplayName("It will not decode unknown short url")
+    void itWillNotDecodeUnknownUrl() {
+        String originalUrl = client.decodeShortUrl("unregisteredShortUrl");
+        //Here two short urls are different because long urls are different
+        Assertions.assertEquals("URL not registered !!", originalUrl);
     }
 }
