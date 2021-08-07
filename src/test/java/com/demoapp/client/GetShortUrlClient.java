@@ -7,4 +7,7 @@ import io.micronaut.http.client.annotation.Client;
 public interface GetShortUrlClient {
     @Get("/getShortUrl?longUrl={longUrl}")
     String getShortUrl(String longUrl);
+
+    @Get("/decodeShortUrl?shortUrl={shortUrl}")
+    String decodeShortUrl(String shortUrl);
 }

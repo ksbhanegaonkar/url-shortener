@@ -35,8 +35,19 @@ public class URLMappingService {
         }
     }
 
+    public String decodeShortUrl(String shortUrl){
+        LOGGER.info("Registering short url {}", shortUrl);
+        Optional<URLMappingEntity> existingMapping = urlMappingRepository.findByShortUrl(shortUrl);
+        if(existingMapping.isPresent()){
+            return existingMapping.get().getLongUrl();
+        }else{
+            LOGGER.error("No short url {} registered",shortUrl);
+            return "URL not registered !!";
+        }
+    }
+
     private String generateUniqueShortUrl() {
-        LOGGER.info("Generating short url");
+        LOGGER.info("Decoding short url");
         String shortUrl;
         Optional<URLMappingEntity> existingEntity;
         do {

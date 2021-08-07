@@ -20,4 +20,10 @@ public class URLShortenerController {
         LOGGER.info("Request received for registering url {}", longUrl);
         return urlMappingService.registerURL(longUrl);
     }
+
+    @Get("/decodeShortUrl")
+    public String decodeShortUrl(String shortUrl){
+        LOGGER.info("Request received to decode short url {}", shortUrl);
+        return urlMappingService.decodeShortUrl(shortUrl);
+    }
 }

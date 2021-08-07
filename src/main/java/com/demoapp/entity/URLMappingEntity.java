@@ -24,7 +24,7 @@ public class URLMappingEntity {
     @Column(name = "shortUrl")
     private String shortUrl;
 
-    @Column(name = "LONG_URL")
+    @Column(name = "LONG_URL", length = 4000)
     private String longUrl;
 
     public URLMappingEntity() {

@@ -47,4 +47,15 @@ class UrlShortenerTest {
         //Here two short urls are different because long urls are different
         Assertions.assertNotEquals(shortUrl1, shortUrl2);
     }
+
+    @Test
+    @DisplayName("It decodes registered url")
+    void itDecodesRegisteredUrl() {
+        String shortUrl = client.getShortUrl("https://longurl.com");
+        Assertions.assertEquals(23, shortUrl.length());
+
+        String originalUrl = client.decodeShortUrl(shortUrl);
+        //Here two short urls are different because long urls are different
+        Assertions.assertEquals("https://longurl.com", originalUrl);
+    }
 }
